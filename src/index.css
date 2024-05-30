@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    .text-outline-4 {
+        -webkit-text-stroke: 4px #B07236;
+    }
+
+    .text-fill-transparent{
+        -webkit-text-fill-color: transparent;
+    }
+}
