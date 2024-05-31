@@ -1,11 +1,11 @@
-import Hero from "./components/Hero";
+import MainContainer from "./container/MainContainer";
 
 
 function App() {
 
   return (
     <div>
-      <Hero />
+      <MainContainer />
     </div>
   )
 }
