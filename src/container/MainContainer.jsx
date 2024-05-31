@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Hero from '../components/Hero';
@@ -28,7 +28,7 @@ const MainContainer = () => {
                 .to(section, {
                     ease: 'none',
                     startAt: { filter: 'brightness(100%) contrast(100%)' },
-                    filter: isLast ? 'none' : 'brightness(50%) contrast(135%)',
+                    filter: isLast ? 'none' : 'brightness(50%) contrast(135%) blur(10px)',
                     scale: 0.9,
                     borderRadius: 40,
                     opacity: { from: 0, to: 1 },
@@ -48,7 +48,7 @@ const MainContainer = () => {
             <div ref={(el) => (sections.current.push(el))}>
                 <Hero />
             </div>
-            <div ref={(el) => (sections.current.push(el))}>
+            <div>
                 <AboutMe />
             </div>
         </div>
