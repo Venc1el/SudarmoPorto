@@ -13,14 +13,16 @@ export default {
       primary: {
         background: "#FEFAE0", 
         text: "#B07236", 
+        contact : "#4E3318",
+        placeholder: "#D1C4A5",
       },
+      transparent: "transparent"
     },
     fontFamily: {
       main: "Poppins, sans-serif",
     },
   },
   plugins: [
-    // Plugin for writing modes and text orientations
     plugin(function ({ addUtilities }) {
       addUtilities({
         ".horizontal-writing-tb": { "writing-mode": "horizontal-tb" },

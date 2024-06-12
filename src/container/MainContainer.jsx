@@ -3,12 +3,15 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Hero from '../components/Hero';
 import AboutMe from '../components/AboutMe';
+import Contact from '../components/Contact';
 
 
 gsap.registerPlugin(ScrollTrigger);
 
 const MainContainer = () => {
     const sections = useRef([]);
+    const sectionsSecond = useRef([]);
+
 
     const applyScrollTrigger = () => {
         sections.current.forEach((section, index) => {
@@ -28,7 +31,32 @@ const MainContainer = () => {
                 .to(section, {
                     ease: 'none',
                     startAt: { filter: 'brightness(100%) contrast(100%)' },
-                    filter: isLast ? 'none' : 'brightness(50%) contrast(135%) blur(10px)',
+                    filter: 'brightness(50%) contrast(135%) blur(10px)',
+                    scale: 0.9,
+                    borderRadius: 40,
+                    opacity: { from: 0, to: 1 },
+                })
+        });
+    };
+
+    const applySecondScrollTrigger = () => {
+        sectionsSecond.current.forEach((section, index) => {
+
+            const sectionTimeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'bottom bottom',
+                    pin: true,
+                    pinSpacing: false,
+                    scrub: 1,
+                },
+            });
+
+            sectionTimeline
+                .to(section, {
+                    ease: 'none',
+                    startAt: { filter: 'brightness(100%) contrast(100%)' },
+                    filter: 'brightness(50%) contrast(135%) blur(10px)',
                     scale: 0.9,
                     borderRadius: 40,
                     opacity: { from: 0, to: 1 },
@@ -38,18 +66,23 @@ const MainContainer = () => {
 
     useEffect(() => {
         applyScrollTrigger();
+        applySecondScrollTrigger();
         return () => {
-            ScrollTrigger.killAll(); 
+            ScrollTrigger.killAll();
         };
     }, []);
 
     return (
-        <div>
+        <div className='overflow-x-hidden'>
             <div ref={(el) => (sections.current.push(el))}>
                 <Hero />
             </div>
-            <div>
+            <div ref={(el) => (sectionsSecond.current.push(el))}>
                 <AboutMe />
+            </div>
+
+            <div ref={(el) => (sectionsSecond.current.push(el))}>
+                <Contact />
             </div>
         </div>
     );
